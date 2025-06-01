@@ -2,6 +2,14 @@
 
 MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a los usuarios gestionar sus pasajes de autobús de manera eficiente y segura. La aplicación incluye un backend robusto en Node.js con MongoDB para el almacenamiento de datos.
 
+## 📚 Información Académica
+
+Este proyecto fue desarrollado como parte de la Experiencia Educativa:
+- **Materia:** Base de Datos Distribuidas y en la Nube
+- **Universidad:** Universidad Veracruzana
+- **Facultad:** Ingeniería Eléctrica y Electrónica
+- **Docente:** Primavera Lucho Arguelles
+
 ## ✨ Características Principales
 
 - 🔐 Autenticación segura de usuarios
@@ -87,10 +95,10 @@ MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a
 4. Confirma la compra
 5. Recibe tu pasaje digital
 
-## 👥 Contribuidores
+## 👥 Creadores
 
-- Michell Policarpio - Desarrollador Principal
-- [Otros contribuidores]
+- **Michell Alexis Policarpio Moran** - Desarrollador Principal
+- **Isabella Coria Juarez** - Desarrolladora
 
 ## 📄 Licencia
 
@@ -106,13 +114,6 @@ Si encuentras algún problema o tienes alguna sugerencia, por favor:
 - Abre un issue en GitHub
 - Contacta al equipo de desarrollo
 - Consulta la documentación
-
-## 🌟 Agradecimientos
-
-- Flutter Team
-- Node.js Community
-- MongoDB Team
-- Todos los contribuidores y usuarios
 
 ---
 
