@@ -1,5 +1,6 @@
 const Driver = require('../models/driver');
 const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 
 // Registro de transportista
 exports.signup = async (req, res) => {
@@ -111,5 +112,92 @@ exports.login = async (req, res) => {
   } catch (error) {
     console.error('Error en login de transportista:', error);
     res.status(500).json({ message: 'Error al iniciar sesión', error: error.message });
+  }
+};
+
+// Obtener todos los transportistas
+exports.getAllDrivers = async (req, res) => {
+  try {
+    const drivers = await User.find({ role: 'driver' })
+      .select('-password')  // Excluir el campo password
+      .sort({ createdAt: -1 });  // Ordenar por fecha de creación, más recientes primero
+    
+    res.json(drivers);
+  } catch (error) {
+    console.error('Error al obtener transportistas:', error);
+    res.status(500).json({ message: 'Error al obtener transportistas', error: error.message });
+  }
+};
+
+// Obtener un transportista por ID
+exports.getDriverById = async (req, res) => {
+  try {
+    const driver = await User.findOne({ _id: req.params.id, role: 'driver' }).select('-password');
+    if (!driver) {
+      return res.status(404).json({ message: 'Transportista no encontrado' });
+    }
+    res.json(driver);
+  } catch (error) {
+    console.error('Error al obtener transportista:', error);
+    res.status(500).json({ message: 'Error al obtener transportista', error: error.message });
+  }
+};
+
+// Actualizar un transportista
+exports.updateDriver = async (req, res) => {
+  try {
+    const { name, email, licenseNumber, busNumber } = req.body;
+    const driver = await User.findOneAndUpdate(
+      { _id: req.params.id, role: 'driver' },
+      { name, email, licenseNumber, busNumber },
+      { new: true }
+    ).select('-password');
+
+    if (!driver) {
+      return res.status(404).json({ message: 'Transportista no encontrado' });
+    }
+
+    res.json(driver);
+  } catch (error) {
+    console.error('Error al actualizar transportista:', error);
+    res.status(500).json({ message: 'Error al actualizar transportista', error: error.message });
+  }
+};
+
+// Eliminar un transportista
+exports.deleteDriver = async (req, res) => {
+  try {
+    const driver = await User.findOneAndDelete({ _id: req.params.id, role: 'driver' });
+    if (!driver) {
+      return res.status(404).json({ message: 'Transportista no encontrado' });
+    }
+    res.json({ message: 'Transportista eliminado exitosamente' });
+  } catch (error) {
+    console.error('Error al eliminar transportista:', error);
+    res.status(500).json({ message: 'Error al eliminar transportista', error: error.message });
+  }
+};
+
+// Obtener estadísticas del transportista
+exports.getDriverStats = async (req, res) => {
+  try {
+    const driverId = req.params.id;
+    
+    // TODO: Implementar lógica para obtener:
+    // - Número de tickets escaneados
+    // - Rutas completadas
+    // - Horas trabajadas
+    // - etc.
+    
+    // Por ahora devolvemos datos de ejemplo
+    res.json({
+      ticketsScanned: 0,
+      routesCompleted: 0,
+      hoursWorked: 0,
+      rating: 0,
+    });
+  } catch (error) {
+    console.error('Error al obtener estadísticas:', error);
+    res.status(500).json({ message: 'Error al obtener estadísticas', error: error.message });
   }
 }; 

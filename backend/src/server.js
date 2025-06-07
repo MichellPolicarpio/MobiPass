@@ -4,6 +4,10 @@ const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
 const ticketRoutes = require('./routes/ticketRoutes');
 const driverRoutes = require('./routes/driverRoutes');
+const adminRoutes = require('./routes/adminRoutes');
+const userRoutes = require('./routes/userRoutes');
+const dashboardRoutes = require('./routes/dashboardRoutes');
+const createDefaultAdmin = require('./config/createDefaultAdmin');
 
 const app = express();
 
@@ -27,7 +31,11 @@ app.use((req, res, next) => {
 
 // Conexión a MongoDB
 mongoose.connect('mongodb+srv://policarpio:policoria@mobipass.bxbu3sp.mongodb.net/?retryWrites=true&w=majority&appName=MobiPass')
-.then(() => console.log('Connected to MongoDB'))
+.then(() => {
+  console.log('Connected to MongoDB');
+  // Crear admin por defecto después de conectar a MongoDB
+  createDefaultAdmin();
+})
 .catch(err => {
   console.error('Could not connect to MongoDB:', err);
   process.exit(1);
@@ -37,6 +45,9 @@ mongoose.connect('mongodb+srv://policarpio:policoria@mobipass.bxbu3sp.mongodb.ne
 app.use('/api/auth', authRoutes);
 app.use('/api/tickets', ticketRoutes);
 app.use('/api/auth/driver', driverRoutes);
+app.use('/api/auth/admin', adminRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 // Ruta de prueba
 app.get('/', (req, res) => {

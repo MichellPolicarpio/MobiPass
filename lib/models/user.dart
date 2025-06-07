@@ -4,8 +4,8 @@ class User {
   final String email;
   final String role;
   final String token;
-  final String? licenseNumber;  // Opcional para transportistas
-  final String? busNumber;      // Opcional para transportistas
+  final String? licenseNumber;  // Campo opcional para transportistas
+  final String? busNumber;      // Campo opcional para transportistas
 
   User({
     required this.id,
@@ -19,13 +19,25 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      id: json['_id'] ?? json['id'] ?? '',  // Acepta tanto _id como id
+      id: json['_id'] ?? json['id'] ?? '',
       name: json['name'] ?? '',
       email: json['email'] ?? '',
-      role: json['role'] ?? '',
+      role: json['role'] ?? 'user',
       token: json['token'] ?? '',
       licenseNumber: json['licenseNumber'],
       busNumber: json['busNumber'],
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'email': email,
+      'role': role,
+      'token': token,
+      'licenseNumber': licenseNumber,
+      'busNumber': busNumber,
+    };
   }
 } 
