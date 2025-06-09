@@ -5,6 +5,7 @@ import '../models/user.dart';
 import '../models/ticket.dart';
 import 'buy_tickets_screen.dart';
 import 'help_screen.dart';
+import 'routes_screen.dart';
 import '../main.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -311,7 +312,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: Icons.route,
                     label: 'Ver Rutas',
                     onPressed: () {
-                      // TODO: Implementar vista de rutas
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RoutesScreen(),
+                        ),
+                      );
                     },
                   ),
                   _buildActionButton(
