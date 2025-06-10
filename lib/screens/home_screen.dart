@@ -9,6 +9,7 @@ import 'routes_screen.dart';
 import 'report_screen.dart';
 import 'report_history_screen.dart';
 import '../main.dart';
+import 'scan_bus_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final User user;
@@ -305,9 +306,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   _buildActionButton(
                     icon: Icons.qr_code_scanner,
-                    label: 'Escanear QR',
+                    label: 'Validar Boleto',
+                    subtitle: 'Ingresa el número de bus',
                     onPressed: () {
-                      // TODO: Implementar escaneo de QR
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ScanBusScreen(),
+                        ),
+                      );
                     },
                   ),
                   _buildActionButton(
@@ -404,6 +411,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildActionButton({
     required IconData icon,
     required String label,
+    String? subtitle,
     required VoidCallback onPressed,
   }) {
     return ElevatedButton(
@@ -427,6 +435,14 @@ class _HomeScreenState extends State<HomeScreen> {
             textAlign: TextAlign.center,
             style: const TextStyle(fontSize: 14),
           ),
+          if (subtitle != null) ...[
+            const SizedBox(height: 4),
+            Text(
+              subtitle,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 12, color: Colors.grey),
+            ),
+          ],
         ],
       ),
     );
