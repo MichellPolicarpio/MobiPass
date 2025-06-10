@@ -101,4 +101,52 @@ exports.deleteReport = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+};
+
+// Admin: Get all reports
+exports.getAllReports = async (req, res) => {
+  try {
+    // Verificar si el usuario es admin
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Acceso denegado' });
+    }
+
+    const reports = await Report.find()
+      .sort({ createdAt: -1 })
+      .populate('userId', 'name email');
+    
+    res.json(reports);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Admin: Update report status
+exports.updateReportStatus = async (req, res) => {
+  try {
+    // Verificar si el usuario es admin
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Acceso denegado' });
+    }
+
+    const { status } = req.body;
+    
+    if (!['pendiente', 'en proceso', 'resuelto'].includes(status)) {
+      return res.status(400).json({ message: 'Estado no válido' });
+    }
+
+    const report = await Report.findByIdAndUpdate(
+      req.params.id,
+      { status },
+      { new: true }
+    );
+
+    if (!report) {
+      return res.status(404).json({ message: 'Reporte no encontrado' });
+    }
+
+    res.json(report);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 }; 

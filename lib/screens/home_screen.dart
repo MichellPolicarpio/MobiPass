@@ -312,9 +312,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const ScanBusScreen(),
+                          builder: (context) => ScanBusScreen(user: widget.user),
                         ),
-                      );
+                      ).then((_) {
+                        // Recargar los boletos cuando regrese
+                        _loadActiveTickets();
+                        _loadTickets();
+                      });
                     },
                   ),
                   _buildActionButton(

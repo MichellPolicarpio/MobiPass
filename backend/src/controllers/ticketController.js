@@ -11,35 +11,51 @@ const generateQRCode = () => {
 // Purchase ticket
 exports.purchaseTicket = async (req, res) => {
   try {
-    const { routeId, busId, seatNumber, departureTime, passengerName, passengerId } = req.body;
+    const { routeId, busId, seatNumber, departureTime, passengerName, passengerId, status } = req.body;
     
-    // Check if route exists and get price
+    // If this is a validation (status === 'used'), find an active ticket to use
+    if (status === 'used') {
+      // Find an active ticket for this user
+      const activeTicket = await Ticket.findOne({
+        userId: req.user.id,
+        isActive: true,
+        status: 'pending'
+      });
+
+      if (!activeTicket) {
+        return res.status(400).json({ message: 'No tienes boletos disponibles' });
+      }
+
+      // Update the ticket with bus and validation info
+      activeTicket.busId = busId;
+      activeTicket.routeId = routeId;
+      activeTicket.seatNumber = seatNumber;
+      activeTicket.departureTime = departureTime;
+      activeTicket.status = 'used';
+      activeTicket.isActive = false;
+
+      await activeTicket.save();
+
+      return res.status(201).json({
+        message: 'Ticket validated successfully',
+        ticket: activeTicket
+      });
+    }
+
+    // Regular ticket purchase flow
     const route = await Route.findById(routeId);
     if (!route) {
       return res.status(404).json({ message: 'Route not found' });
     }
 
-    // Check if bus exists
     const bus = await Bus.findById(busId);
     if (!bus) {
       return res.status(404).json({ message: 'Bus not found' });
     }
 
-    // Check if seat is available
-    const existingTicket = await Ticket.findOne({
-      busId,
-      departureTime,
-      seatNumber,
-      status: { $in: ['pending', 'confirmed'] }
-    });
-
-    if (existingTicket) {
-      return res.status(400).json({ message: 'Seat is already taken' });
-    }
-
-    // Create ticket
+    // Create new ticket
     const ticket = new Ticket({
-      userId: req.user.id, // From auth middleware
+      userId: req.user.id,
       routeId,
       busId,
       seatNumber,

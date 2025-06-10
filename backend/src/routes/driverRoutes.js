@@ -8,6 +8,7 @@ router.post('/login', driverController.login);
 
 // Rutas CRUD
 router.get('/', driverController.getAllDrivers);
+router.get('/bus/:busNumber', driverController.findDriverByBusNumber);
 router.get('/:id', driverController.getDriverById);
 router.put('/:id', driverController.updateDriver);
 router.delete('/:id', driverController.deleteDriver);

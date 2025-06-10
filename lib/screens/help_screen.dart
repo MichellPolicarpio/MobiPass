@@ -27,7 +27,7 @@ class HelpScreen extends StatelessWidget {
             const SizedBox(height: 24),
             _buildHelpSection(
               title: 'Iniciar Sesión',
-              content: 'Para iniciar sesión, ingresa tu correo electrónico y contraseña en la pantalla de inicio. Si no tienes una cuenta, puedes crear una nueva presionando "Don\'t have an account? Sign up".',
+              content: 'Para iniciar sesión, ingresa tu correo electrónico y contraseña en la pantalla de inicio. Si no tienes una cuenta, puedes crear una nueva presionando "¿No tienes una cuenta? Regístrate".',
               icon: Icons.login,
             ),
             _buildHelpSection(
@@ -36,9 +36,9 @@ class HelpScreen extends StatelessWidget {
               icon: Icons.add_circle_outline,
             ),
             _buildHelpSection(
-              title: 'Escanear QR',
-              content: '1. Presiona el botón "Escanear QR"\n2. Apunta la cámara hacia el código QR del autobús\n3. El sistema validará tu boleto automáticamente',
-              icon: Icons.qr_code_scanner,
+              title: 'Usar Boleto',
+              content: '1. Presiona el botón "Usar Boleto"\n2. Solicita el número de bus al conductor\n3. Ingresa el número en el campo correspondiente\n4. Presiona "Validar Boleto"\n5. Muestra la confirmación al conductor',
+              icon: Icons.confirmation_number,
             ),
             _buildHelpSection(
               title: 'Ver Rutas',
@@ -47,7 +47,7 @@ class HelpScreen extends StatelessWidget {
             ),
             _buildHelpSection(
               title: 'Realizar Reporte',
-              content: '1. Presiona el botón "Realizar Reporte"\n2. Selecciona el tipo de reporte\n3. Describe el problema o situación\n4. Adjunta fotos si es necesario\n5. Envía el reporte',
+              content: '1. Presiona el botón "Realizar Reporte"\n2. Ingresa la matrícula del conductor\n3. Selecciona el tipo de reporte\n4. Describe el problema o situación\n5. Envía el reporte',
               icon: Icons.report,
             ),
             _buildHelpSection(

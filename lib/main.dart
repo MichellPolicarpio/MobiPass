@@ -120,6 +120,11 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Acceso Usuario'),
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -130,16 +135,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(height: 40),
-                  // Logo de autobús
+                  // Logo con fondo azul claro
                   Container(
                     width: 120,
                     height: 120,
                     decoration: BoxDecoration(
-                      color: Colors.blue.shade50,
+                      color: Colors.blue.withOpacity(0.1),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
-                      Icons.directions_bus,
+                      Icons.person,
                       size: 80,
                       color: Colors.blue,
                     ),
@@ -150,6 +155,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
+                      color: Colors.blue,
+                    ),
+                  ),
+                  const Text(
+                    'Portal de Usuario',
+                    style: TextStyle(
+                      fontSize: 18,
                       color: Colors.blue,
                     ),
                   ),

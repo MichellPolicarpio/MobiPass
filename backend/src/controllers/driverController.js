@@ -34,7 +34,7 @@ exports.signup = async (req, res) => {
     // Generar token
     const token = jwt.sign(
       { id: driver._id, role: driver.role },
-      process.env.JWT_SECRET || 'your-secret-key',
+      process.env.JWT_SECRET || 'tu_jwt_secret',
       { expiresIn: '24h' }
     );
 
@@ -87,7 +87,7 @@ exports.login = async (req, res) => {
     // Generar token
     const token = jwt.sign(
       { id: driver._id, role: driver.role },
-      process.env.JWT_SECRET || 'your-secret-key',
+      process.env.JWT_SECRET || 'tu_jwt_secret',
       { expiresIn: '24h' }
     );
 
@@ -199,5 +199,22 @@ exports.getDriverStats = async (req, res) => {
   } catch (error) {
     console.error('Error al obtener estadísticas:', error);
     res.status(500).json({ message: 'Error al obtener estadísticas', error: error.message });
+  }
+};
+
+// Buscar transportista por número de bus
+exports.findDriverByBusNumber = async (req, res) => {
+  try {
+    const busNumber = req.params.busNumber;
+    const driver = await Driver.findOne({ busNumber, active: true }).select('-password');
+    
+    if (!driver) {
+      return res.status(404).json({ message: 'Transportista no encontrado' });
+    }
+    
+    res.json(driver);
+  } catch (error) {
+    console.error('Error al buscar transportista:', error);
+    res.status(500).json({ message: 'Error al buscar transportista', error: error.message });
   }
 }; 

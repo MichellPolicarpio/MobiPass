@@ -4,9 +4,11 @@ const bcrypt = require('bcryptjs');
 
 // Generate JWT Token
 const generateToken = (userId) => {
-  return jwt.sign({ id: userId }, global.JWT_SECRET, {
-    expiresIn: '30d'
-  });
+  return jwt.sign(
+    { id: userId },
+    process.env.JWT_SECRET || 'tu_jwt_secret',
+    { expiresIn: '30d' }
+  );
 };
 
 // Register new user

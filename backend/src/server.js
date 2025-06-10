@@ -8,6 +8,7 @@ const adminRoutes = require('./routes/adminRoutes');
 const userRoutes = require('./routes/userRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes');
 const reportRoutes = require('./routes/reportRoutes');
+const busRoutes = require('./routes/busRoutes');
 const createDefaultAdmin = require('./config/createDefaultAdmin');
 
 const app = express();
@@ -50,6 +51,7 @@ app.use('/api/auth/admin', adminRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/reports', reportRoutes);
+app.use('/api/buses', busRoutes);
 
 // Ruta de prueba
 app.get('/', (req, res) => {
