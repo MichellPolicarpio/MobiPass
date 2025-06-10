@@ -1,7 +1,7 @@
 # 🚌 MobiPass - Sistema de Gestión de Pasajes de Autobús
 
 <div align="center">
-  <img src="ImagenPortada.jpg" alt="MobiPass App Screenshot" width="240" height="473" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="ImagenPortada.jpg" alt="MobiPass App Screenshot" width="200" height="394" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
 </div>
 
 MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a los usuarios gestionar sus pasajes de autobús de manera eficiente y segura. La aplicación incluye un backend robusto en Node.js con MongoDB para el almacenamiento de datos.
