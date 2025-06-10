@@ -25,6 +25,7 @@ class _ScanBusScreenState extends State<ScanBusScreen> {
   bool? _isValid;
   int _remainingTickets = 0;
   String? _errorMessage;
+  Map<String, dynamic>? _driverData;
 
   @override
   void initState() {
@@ -117,6 +118,9 @@ class _ScanBusScreenState extends State<ScanBusScreen> {
       // 2. Validar el boleto y crear la transacción
       print('Validando boleto...');
       final driverData = json.decode(busResponse.body);
+      setState(() {
+        _driverData = driverData;
+      });
       
       // Primero crear o obtener el bus
       final busCreateResponse = await http.post(
@@ -253,7 +257,7 @@ class _ScanBusScreenState extends State<ScanBusScreen> {
                   ),
                 ),
                 const SizedBox(height: 8),
-                const Text('• Ruta: Xalapa - UV'),
+                Text('• Conductor: ${_driverData?['name'] ?? 'No disponible'}'),
                 Text('• Boletos restantes: $_remainingTickets'),
                 Text(
                   '• Fecha: ${DateTime.now().toString().split('.')[0]}',

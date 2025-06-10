@@ -27,7 +27,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late int _activeTickets;
-  List<Ticket> _tickets = [];
   bool _isLoading = false;
 
   @override
@@ -35,7 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     _activeTickets = widget.activeTickets;
     _loadActiveTickets();
-    _loadTickets();
   }
 
   Future<void> _loadActiveTickets() async {
@@ -58,32 +56,8 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  Future<void> _loadTickets() async {
-    setState(() => _isLoading = true);
-    try {
-      final response = await http.get(
-        Uri.parse('http://localhost:3000/api/tickets'),
-        headers: {
-          'Authorization': 'Bearer ${widget.user.token}',
-        },
-      );
-
-      if (response.statusCode == 200) {
-        final List<dynamic> data = json.decode(response.body);
-        setState(() {
-          _tickets = data.map((json) => Ticket.fromJson(json)).toList();
-        });
-      }
-    } catch (e) {
-      // Manejar error
-    } finally {
-      setState(() => _isLoading = false);
-    }
-  }
-
   void _handleTicketsPurchased(List<Ticket> newTickets) {
     setState(() {
-      _tickets.addAll(newTickets);
       _activeTickets += newTickets.length;
     });
   }
@@ -317,7 +291,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       ).then((_) {
                         // Recargar los boletos cuando regrese
                         _loadActiveTickets();
-                        _loadTickets();
                       });
                     },
                   ),
@@ -366,45 +339,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 24),
-
-              // Lista de boletos
-              const Text(
-                'Mis Boletos',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 16),
-              if (_isLoading)
-                const Center(child: CircularProgressIndicator())
-              else if (_tickets.isEmpty)
-                const Center(
-                  child: Text('No tienes boletos'),
-                )
-              else
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: _tickets.length,
-                  itemBuilder: (context, index) {
-                    final ticket = _tickets[index];
-                    return Card(
-                      margin: const EdgeInsets.only(bottom: 8),
-                      child: ListTile(
-                        leading: const Icon(Icons.confirmation_number),
-                        title: Text('Boleto #${ticket.id?.substring(0, 8) ?? 'N/A'}'),
-                        subtitle: Text(
-                          'Estado: ${ticket.status}\nFecha: ${ticket.departureTime.toString().split('.')[0]}',
-                        ),
-                        trailing: ticket.isActive
-                            ? const Icon(Icons.check_circle, color: Colors.green)
-                            : const Icon(Icons.cancel, color: Colors.red),
-                      ),
-                    );
-                  },
-                ),
             ],
           ),
         ),
