@@ -99,6 +99,11 @@ MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a
    - Ingresa el número en la aplicación
    - Muestra la confirmación al conductor
 
+<div align="center">
+  <img src="UsuarioVisualizandoCompraBoletos.jpg" alt="Pantalla de Compra de Boletos" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-right: 30px;">
+  <img src="UsuarioBoletoValidado.jpg" alt="Pantalla de Validación de Boleto" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+</div>
+
 ### Sistema de Reportes
 1. Selecciona "Realizar Reporte"
 2. Ingresa la matrícula del conductor
