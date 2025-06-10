@@ -116,14 +116,10 @@ MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a
   <img src="UsuarioVisualizandoReportes.jpg" alt="Pantalla de Historial de Reportes" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
 </div>
 
-## �� Desarrolladores
+## 👥 Desarrolladores
 
 - **Michell Alexis Policarpio Moran**
 - **Isabella Coria Juarez**
-
-## 🤝 Contribuir
-
-Las contribuciones son bienvenidas. Por favor, lee `CONTRIBUTING.md` para detalles sobre nuestro código de conducta y el proceso para enviarnos pull requests.
 
 ## 📞 Soporte
 
