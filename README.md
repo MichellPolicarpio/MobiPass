@@ -108,8 +108,7 @@ MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a
 1. Accede a la sección "Rutas Disponibles"
 2. Selecciona una ruta del menú desplegable
 3. Visualiza el recorrido detallado en el mapa
-4. Identifica las paradas y puntos de interés
-5. Planifica tu viaje de manera eficiente
+4. Planifica tu viaje de manera eficiente
 
 <div align="center">
   <img src="UsuarioVisualizaRutas.jpg" alt="Pantalla de Visualización de Rutas" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
