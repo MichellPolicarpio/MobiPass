@@ -84,6 +84,11 @@ MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a
 3. Completa el formulario con tus datos
 4. Para iniciar sesión, usa tu correo y contraseña
 
+<div align="center">
+  <img src="IniciarSesionUsuario.jpg" alt="Pantalla de Inicio de Sesión" width="200" height="394" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-right: 20px;">
+  <img src="CrearCuentaUsuario.jpg" alt="Pantalla de Registro" width="200" height="394" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+</div>
+
 ### Compra y Uso de Pasajes
 1. Inicia sesión en la aplicación
 2. Selecciona "Comprar Boletos"
