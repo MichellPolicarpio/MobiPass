@@ -17,7 +17,31 @@ class _SignupScreenState extends State<SignupScreen> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  DateTime? _selectedDate;
+  String? _selectedGender;
   bool _isLoading = false;
+
+  final List<String> _genderOptions = [
+    'masculino',
+    'femenino',
+    'otro',
+    'prefiero_no_decir'
+  ];
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now().subtract(const Duration(days: 6570)), // 18 años atrás
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+      locale: const Locale('es', ''),
+    );
+    if (picked != null && picked != _selectedDate) {
+      setState(() {
+        _selectedDate = picked;
+      });
+    }
+  }
 
   Future<void> _signup() async {
     if (!_formKey.currentState!.validate()) return;
@@ -37,6 +61,8 @@ class _SignupScreenState extends State<SignupScreen> {
           'name': _nameController.text,
           'email': _emailController.text,
           'password': _passwordController.text,
+          'dateOfBirth': _selectedDate?.toIso8601String(),
+          'gender': _selectedGender,
         }),
       );
 
@@ -177,6 +203,47 @@ class _SignupScreenState extends State<SignupScreen> {
                       }
                       return null;
                     },
+                  ),
+                  const SizedBox(height: 16),
+                  // Campo de fecha de nacimiento
+                  InkWell(
+                    onTap: () => _selectDate(context),
+                    child: InputDecorator(
+                      decoration: const InputDecoration(
+                        labelText: 'Fecha de Nacimiento',
+                        prefixIcon: Icon(Icons.calendar_today),
+                        border: OutlineInputBorder(),
+                      ),
+                      child: Text(
+                        _selectedDate != null
+                            ? '${_selectedDate!.day}/${_selectedDate!.month}/${_selectedDate!.year}'
+                            : 'Selecciona tu fecha de nacimiento',
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  // Campo de género
+                  DropdownButtonFormField<String>(
+                    value: _selectedGender,
+                    decoration: const InputDecoration(
+                      labelText: 'Género',
+                      prefixIcon: Icon(Icons.person_outline),
+                      border: OutlineInputBorder(),
+                    ),
+                    items: _genderOptions.map((String gender) {
+                      String displayText = gender.replaceAll('_', ' ');
+                      displayText = displayText[0].toUpperCase() + displayText.substring(1);
+                      return DropdownMenuItem<String>(
+                        value: gender,
+                        child: Text(displayText),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        _selectedGender = newValue;
+                      });
+                    },
+                    hint: const Text('Selecciona tu género'),
                   ),
                   const SizedBox(height: 24),
                   SizedBox(

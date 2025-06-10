@@ -6,6 +6,8 @@ class User {
   final String token;
   final String? licenseNumber;  // Campo opcional para transportistas
   final String? busNumber;      // Campo opcional para transportistas
+  final DateTime? dateOfBirth;  // Campo opcional para fecha de nacimiento
+  final String? gender;         // Campo opcional para género
 
   User({
     required this.id,
@@ -15,6 +17,8 @@ class User {
     required this.token,
     this.licenseNumber,
     this.busNumber,
+    this.dateOfBirth,
+    this.gender,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -26,6 +30,8 @@ class User {
       token: json['token'] ?? '',
       licenseNumber: json['licenseNumber'],
       busNumber: json['busNumber'],
+      dateOfBirth: json['dateOfBirth'] != null ? DateTime.parse(json['dateOfBirth']) : null,
+      gender: json['gender'],
     );
   }
 
@@ -38,6 +44,8 @@ class User {
       'token': token,
       'licenseNumber': licenseNumber,
       'busNumber': busNumber,
+      'dateOfBirth': dateOfBirth?.toIso8601String(),
+      'gender': gender,
     };
   }
 } 

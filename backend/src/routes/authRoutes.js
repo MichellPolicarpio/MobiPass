@@ -11,7 +11,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'tu_jwt_secret';
 router.post('/signup', async (req, res) => {
   try {
     console.log('Signup attempt:', req.body);
-    const { name, email, password } = req.body;
+    const { name, email, password, dateOfBirth, gender } = req.body;
 
     // Check if user already exists
     let user = await User.findOne({ email });
@@ -25,6 +25,8 @@ router.post('/signup', async (req, res) => {
       name,
       email,
       password,
+      dateOfBirth,
+      gender,
       role: 'user'
     });
 
@@ -49,7 +51,9 @@ router.post('/signup', async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
-        role: user.role
+        role: user.role,
+        dateOfBirth: user.dateOfBirth,
+        gender: user.gender
       }
     });
   } catch (error) {
@@ -93,7 +97,9 @@ router.post('/login', async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
-        role: user.role
+        role: user.role,
+        dateOfBirth: user.dateOfBirth,
+        gender: user.gender
       }
     });
   } catch (error) {
