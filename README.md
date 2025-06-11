@@ -4,7 +4,7 @@
   <img src="ImagenPortada.jpg" alt="MobiPass App Screenshot" width="200" height="394" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
 </div>
 
-MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a los usuarios gestionar sus pasajes de autobús de manera eficiente y segura. La aplicación incluye un backend robusto en Node.js con MongoDB para el almacenamiento de datos.
+MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a los usuarios gestionar sus pasajes de autobús de manera eficiente y segura. La aplicación utiliza MongoDB Atlas como base de datos en la nube para garantizar alta disponibilidad y escalabilidad, junto con un backend robusto en Node.js.
 
 ## ✨ Características Principales
 
@@ -12,7 +12,7 @@ MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a
 - 🎫 Compra y gestión de pasajes digitales
 - 🚍 Validación de pasajes por número de bus
 - 📱 Interfaz de usuario intuitiva y moderna
-- 🔄 Sincronización en tiempo real
+- 🔄 Sincronización en tiempo real con base de datos en la nube
 - 📊 Sistema de reportes y seguimiento
 - 👥 Gestión de usuarios y conductores
 - 💳 Pago seguro integrado
@@ -28,7 +28,7 @@ MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a
 ### Backend
 - Node.js
 - Express.js
-- MongoDB
+- MongoDB Atlas (Base de datos en la nube)
 - JWT para autenticación
 - Bcrypt para encriptación
 
@@ -37,7 +37,7 @@ MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a
 ### Requisitos Previos
 - Flutter SDK (versión 3.0.0 o superior)
 - Node.js (versión 14.0.0 o superior)
-- MongoDB
+- Cuenta en MongoDB Atlas
 - Git
 
 ### Pasos de Instalación
@@ -48,30 +48,38 @@ MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a
    cd mobipass
    ```
 
-2. **Configurar el Backend**
+2. **Configurar MongoDB Atlas**
+   - Crear una cuenta en [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+   - Crear un nuevo cluster (puede ser el tier gratuito)
+   - Obtener el string de conexión del cluster
+   - En el archivo `.env` del backend, reemplazar la variable `MONGODB_URI` con tu string de conexión
+
+3. **Configurar el Backend**
    ```bash
    cd backend
    npm install
    ```
 
-3. **Configurar Variables de Entorno**
+4. **Configurar Variables de Entorno**
    ```bash
    cp .env.example .env
-   # Editar .env con tus configuraciones
+   # Editar .env con tus configuraciones:
+   # - MONGODB_URI=tu-string-de-conexion-de-mongodb-atlas
+   # - Otras variables necesarias
    ```
 
-4. **Iniciar el Servidor**
+5. **Iniciar el Servidor**
    ```bash
    npm run dev
    ```
 
-5. **Configurar el Frontend**
+6. **Configurar el Frontend**
    ```bash
    cd ..
    flutter pub get
    ```
 
-6. **Ejecutar la Aplicación**
+7. **Ejecutar la Aplicación**
    ```bash
    flutter run
    ```
