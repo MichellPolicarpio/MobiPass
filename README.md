@@ -15,7 +15,6 @@ MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a
 - 🔄 Sincronización en tiempo real con base de datos en la nube
 - 📊 Sistema de reportes y seguimiento
 - 👥 Gestión de usuarios y conductores
-- 💳 Pago seguro integrado
 
 ## 🛠️ Tecnologías Utilizadas
 
