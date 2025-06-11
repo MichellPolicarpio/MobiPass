@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import '../models/user.dart';
+import '../providers/theme_provider.dart';
+import 'help_screen.dart';
 
 class DriverHomeScreen extends StatefulWidget {
   final User user;
@@ -110,6 +113,100 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
         backgroundColor: Colors.orange,
         foregroundColor: Colors.white,
         actions: [
+          Consumer<ThemeProvider>(
+            builder: (context, themeProvider, child) => PopupMenuButton<String>(
+              icon: const Icon(Icons.more_vert),
+              onSelected: (value) {
+                switch (value) {
+                  case 'darkMode':
+                    themeProvider.toggleTheme();
+                    break;
+                  case 'help':
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const HelpScreen()),
+                    );
+                    break;
+                  case 'about':
+                    showAboutDialog(
+                      context: context,
+                      applicationName: 'MobiPass',
+                      applicationVersion: '1.0.0',
+                      applicationIcon: const FlutterLogo(size: 64),
+                      children: [
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Creadores:',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const Text('• Michell Alexis Policarpio Moran'),
+                        const Text('• Isabella Coria Juarez'),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Profesora:',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const Text('Primavera Arguelles Lucho'),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Materia:',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const Text('Base de Datos Distribuidas y en la Nube'),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Facultad:',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const Text('Ingeniería Eléctrica y Electrónica'),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Universidad:',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const Text('Universidad Veracruzana'),
+                      ],
+                    );
+                    break;
+                }
+              },
+              itemBuilder: (BuildContext context) => [
+                PopupMenuItem<String>(
+                  value: 'darkMode',
+                  child: Row(
+                    children: [
+                      Icon(
+                        themeProvider.isDarkMode ? Icons.dark_mode : Icons.light_mode,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(themeProvider.isDarkMode ? 'Modo Claro' : 'Modo Oscuro'),
+                    ],
+                  ),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'help',
+                  child: Row(
+                    children: [
+                      Icon(Icons.help_outline),
+                      SizedBox(width: 8),
+                      Text('Ayuda'),
+                    ],
+                  ),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'about',
+                  child: Row(
+                    children: [
+                      Icon(Icons.info_outline),
+                      SizedBox(width: 8),
+                      Text('Acerca de'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
