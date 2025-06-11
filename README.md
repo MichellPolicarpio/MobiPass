@@ -50,7 +50,7 @@ MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a
 2. **Configurar MongoDB Atlas**
    - Crear una cuenta en [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
    - Crear un nuevo cluster (puede ser el tier gratuito)
-   - Obtener el string de conexión del cluster
+   - Obtener el string de conexión del cluster (seleccionar driver Node.js versión 6.7 o superior)
    - En el archivo `backend/src/index.js`, reemplazar el string de conexión de MongoDB con el tuyo:
      ```javascript
      mongoose.connect('tu-string-de-conexion-de-mongodb-atlas')
