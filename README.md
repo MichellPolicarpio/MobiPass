@@ -51,7 +51,10 @@ MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a
    - Crear una cuenta en [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
    - Crear un nuevo cluster (puede ser el tier gratuito)
    - Obtener el string de conexión del cluster
-   - En el archivo `.env` del backend, reemplazar la variable `MONGODB_URI` con tu string de conexión
+   - En el archivo `backend/src/index.js`, reemplazar el string de conexión de MongoDB con el tuyo:
+     ```javascript
+     mongoose.connect('tu-string-de-conexion-de-mongodb-atlas')
+     ```
 
 3. **Configurar el Backend**
    ```bash
@@ -59,26 +62,18 @@ MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a
    npm install
    ```
 
-4. **Configurar Variables de Entorno**
-   ```bash
-   cp .env.example .env
-   # Editar .env con tus configuraciones:
-   # - MONGODB_URI=tu-string-de-conexion-de-mongodb-atlas
-   # - Otras variables necesarias
-   ```
-
-5. **Iniciar el Servidor**
+4. **Iniciar el Servidor**
    ```bash
    npm run dev
    ```
 
-6. **Configurar el Frontend**
+5. **Configurar el Frontend**
    ```bash
    cd ..
    flutter pub get
    ```
 
-7. **Ejecutar la Aplicación**
+6. **Ejecutar la Aplicación**
    ```bash
    flutter run
    ```
