@@ -113,7 +113,8 @@ MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a
 4. Planifica tu viaje de manera eficiente
 
 <div align="center">
-  <img src="UsuarioVisualizaRutas.jpg" alt="Pantalla de Visualización de Rutas" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="UsuarioVisualizaRutas.jpg" alt="Pantalla de Visualización de Rutas - Norte Sur Lomas" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-right: 30px;">
+  <img src="UsuarioVisualizaRutas2.jpg" alt="Pantalla de Visualización de Rutas - Boca del Río" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
 </div>
 
 ### Sistema de Reportes
