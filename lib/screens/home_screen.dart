@@ -10,6 +10,7 @@ import 'report_screen.dart';
 import 'report_history_screen.dart';
 import '../main.dart';
 import 'scan_bus_screen.dart';
+import 'settings_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final User user;
@@ -77,6 +78,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 context,
                 MaterialPageRoute(builder: (context) => const LoginScreen()),
                 (route) => false,
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              print('Abriendo configuración...'); // Debug print
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => SettingsScreen(user: widget.user),
+                ),
               );
             },
           ),
@@ -334,7 +346,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     icon: Icons.settings,
                     label: 'Configuración',
                     onPressed: () {
-                      // TODO: Implementar configuración
+                      print('Abriendo configuración desde el grid...'); // Debug print
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => SettingsScreen(user: widget.user),
+                        ),
+                      );
                     },
                   ),
                 ],

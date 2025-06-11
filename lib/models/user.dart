@@ -4,6 +4,7 @@ class User {
   final String email;
   final String role;
   final String token;
+  final String serverUrl;
   final String? licenseNumber;  // Campo opcional para transportistas
   final String? busNumber;      // Campo opcional para transportistas
   final DateTime? dateOfBirth;  // Campo opcional para fecha de nacimiento
@@ -15,6 +16,7 @@ class User {
     required this.email,
     required this.role,
     required this.token,
+    required this.serverUrl,
     this.licenseNumber,
     this.busNumber,
     this.dateOfBirth,
@@ -23,11 +25,12 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      id: json['_id'] ?? json['id'] ?? '',
+      id: json['_id'] ?? '',
       name: json['name'] ?? '',
       email: json['email'] ?? '',
       role: json['role'] ?? 'user',
       token: json['token'] ?? '',
+      serverUrl: json['serverUrl'] ?? 'http://localhost:3000',
       licenseNumber: json['licenseNumber'],
       busNumber: json['busNumber'],
       dateOfBirth: json['dateOfBirth'] != null ? DateTime.parse(json['dateOfBirth']) : null,
@@ -42,6 +45,7 @@ class User {
       'email': email,
       'role': role,
       'token': token,
+      'serverUrl': serverUrl,
       'licenseNumber': licenseNumber,
       'busNumber': busNumber,
       'dateOfBirth': dateOfBirth?.toIso8601String(),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
+import 'providers/theme_provider.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:io' show Platform;
@@ -23,7 +25,12 @@ String getServerUrl() {
 final String serverUrl = getServerUrl();
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -31,23 +38,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'MobiPass',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,
-      ),
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('es', ''), // Español
-        Locale('en', ''), // Inglés
-      ],
-      locale: const Locale('es', ''), // Forzar español
-      home: const LoginScreen(),
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        return MaterialApp(
+          title: 'MobiPass',
+          theme: themeProvider.currentTheme,
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            Locale('es', ''), // Español
+            Locale('en', ''), // Inglés
+          ],
+          locale: const Locale('es', ''), // Forzar español
+          home: const LoginScreen(),
+        );
+      },
     );
   }
 }
@@ -93,6 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
         final user = User.fromJson({
           ...data['user'],
           'token': data['token'],
+          'serverUrl': serverUrl,
         });
 
         if (mounted) {
@@ -135,6 +144,86 @@ class _LoginScreenState extends State<LoginScreen> {
         title: const Text('Acceso Usuario'),
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
+        actions: [
+          Consumer<ThemeProvider>(
+            builder: (context, themeProvider, child) => PopupMenuButton<String>(
+              icon: const Icon(Icons.more_vert),
+              onSelected: (value) {
+                switch (value) {
+                  case 'about':
+                    showAboutDialog(
+                      context: context,
+                      applicationName: 'MobiPass',
+                      applicationVersion: '1.0.0',
+                      applicationIcon: const FlutterLogo(size: 64),
+                      children: [
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Creadores:',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const Text('• Michell Alexis Policarpio Moran'),
+                        const Text('• Isabella Coria Juarez'),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Profesora:',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const Text('Primavera Arguelles Lucho'),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Materia:',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const Text('Base de Datos Distribuidas y en la Nube'),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Facultad:',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const Text('Ingeniería Eléctrica y Electrónica'),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Universidad:',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const Text('Universidad Veracruzana'),
+                      ],
+                    );
+                    break;
+                  case 'darkMode':
+                    themeProvider.toggleTheme();
+                    break;
+                }
+              },
+              itemBuilder: (BuildContext context) => [
+                PopupMenuItem<String>(
+                  value: 'darkMode',
+                  child: Row(
+                    children: [
+                      Icon(
+                        themeProvider.isDarkMode ? Icons.dark_mode : Icons.light_mode,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(themeProvider.isDarkMode ? 'Modo Claro' : 'Modo Oscuro'),
+                    ],
+                  ),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'about',
+                  child: Row(
+                    children: [
+                      Icon(Icons.info_outline),
+                      SizedBox(width: 8),
+                      Text('Acerca de'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
