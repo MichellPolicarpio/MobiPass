@@ -17,22 +17,24 @@ class HomeScreen extends StatefulWidget {
   final int activeTickets;
 
   const HomeScreen({
-    super.key,
+    Key? key,
     required this.user,
     required this.activeTickets,
-  });
+  }) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late User _currentUser;
   late int _activeTickets;
   bool _isLoading = false;
 
   @override
   void initState() {
     super.initState();
+    _currentUser = widget.user;
     _activeTickets = widget.activeTickets;
     _loadActiveTickets();
   }
@@ -42,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
       final response = await http.get(
         Uri.parse('http://localhost:3000/api/tickets/active/count'),
         headers: {
-          'Authorization': 'Bearer ${widget.user.token}',
+          'Authorization': 'Bearer ${_currentUser.token}',
         },
       );
 
@@ -60,6 +62,12 @@ class _HomeScreenState extends State<HomeScreen> {
   void _handleTicketsPurchased(List<Ticket> newTickets) {
     setState(() {
       _activeTickets += newTickets.length;
+    });
+  }
+
+  void _handleUserUpdate(User updatedUser) {
+    setState(() {
+      _currentUser = updatedUser;
     });
   }
 
@@ -87,7 +95,10 @@ class _HomeScreenState extends State<HomeScreen> {
               print('Abriendo configuración...'); // Debug print
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => SettingsScreen(user: widget.user),
+                  builder: (context) => SettingsScreen(
+                    user: _currentUser,
+                    onUserUpdated: _handleUserUpdate,
+                  ),
                 ),
               );
             },
@@ -112,14 +123,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    widget.user.name,
+                    _currentUser.name,
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 18,
                     ),
                   ),
                   Text(
-                    widget.user.email,
+                    _currentUser.email,
                     style: const TextStyle(
                       color: Colors.white70,
                       fontSize: 14,
@@ -216,7 +227,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '¡Bienvenido, ${widget.user.name}!',
+                        '¡Bienvenido, ${_currentUser.name}!',
                         style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -283,7 +294,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => BuyTicketsScreen(
-                            user: widget.user,
+                            user: _currentUser,
                             onTicketsPurchased: _handleTicketsPurchased,
                           ),
                         ),
@@ -298,7 +309,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ScanBusScreen(user: widget.user),
+                          builder: (context) => ScanBusScreen(user: _currentUser),
                         ),
                       ).then((_) {
                         // Recargar los boletos cuando regrese
@@ -325,7 +336,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ReportScreen(user: widget.user),
+                          builder: (context) => ReportScreen(user: _currentUser),
                         ),
                       );
                     },
@@ -337,7 +348,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ReportHistoryScreen(user: widget.user),
+                          builder: (context) => ReportHistoryScreen(user: _currentUser),
                         ),
                       );
                     },
@@ -349,7 +360,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       print('Abriendo configuración desde el grid...'); // Debug print
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => SettingsScreen(user: widget.user),
+                          builder: (context) => SettingsScreen(
+                            user: _currentUser,
+                            onUserUpdated: _handleUserUpdate,
+                          ),
                         ),
                       );
                     },

@@ -11,10 +11,12 @@ import 'dart:convert';
 
 class SettingsScreen extends StatefulWidget {
   final User user;
+  final Function(User)? onUserUpdated;
 
   const SettingsScreen({
     Key? key,
     required this.user,
+    this.onUserUpdated,
   }) : super(key: key);
 
   @override
@@ -41,8 +43,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
     setState(() => _isLoading = true);
 
     try {
+      print('Intentando actualizar usuario: ${widget.user.id}');
+      print('URL: ${widget.user.serverUrl}/api/users/${widget.user.id}');
+      print('Datos a enviar: ${json.encode({
+        'name': _nameController.text,
+        'email': _emailController.text,
+      })}');
+
       final response = await http.put(
-        Uri.parse('${widget.user.serverUrl}/api/auth/update'),
+        Uri.parse('${widget.user.serverUrl}/api/users/${widget.user.id}'),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ${widget.user.token}',
@@ -53,24 +62,56 @@ class _SettingsScreenState extends State<SettingsScreen> {
         }),
       );
 
+      print('Respuesta del servidor: ${response.statusCode}');
+      print('Cuerpo de la respuesta: ${response.body}');
+
       if (response.statusCode == 200) {
+        final updatedUserData = json.decode(response.body);
+        final updatedUser = User(
+          id: widget.user.id,
+          name: updatedUserData['name'],
+          email: updatedUserData['email'],
+          role: widget.user.role,
+          token: widget.user.token,
+          serverUrl: widget.user.serverUrl,
+        );
+
         if (mounted) {
+          widget.onUserUpdated?.call(updatedUser);
+          
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Información actualizada correctamente')),
           );
-          setState(() => _isEditing = false);
+          setState(() {
+            _isEditing = false;
+            _nameController.text = updatedUser.name;
+            _emailController.text = updatedUser.email;
+          });
+
+          Navigator.pop(context);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => SettingsScreen(
+                user: updatedUser,
+                onUserUpdated: widget.onUserUpdated,
+              ),
+            ),
+          );
         }
       } else {
         if (mounted) {
+          final errorData = json.decode(response.body);
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Error: ${response.body}')),
+            SnackBar(content: Text('Error: ${errorData['message'] ?? 'Error desconocido'}')),
           );
         }
       }
     } catch (e) {
+      print('Error al actualizar usuario: $e');
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: $e')),
+          SnackBar(content: Text('Error al actualizar usuario: $e')),
         );
       }
     } finally {
