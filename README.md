@@ -8,49 +8,13 @@ MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a
 
 ## ✨ Características Principales
 
-### Gestión de Usuarios
 - 🔐 Autenticación segura de usuarios, conductores y administradores
-- 👤 Perfiles de usuario personalizables
-- 🌓 Modo oscuro/claro
-- 🔒 Cierre de sesión seguro
-- ✏️ Edición de perfil de usuario
-
-### Gestión de Boletos
 - 🎫 Compra y gestión de pasajes digitales
-- 📱 Visualización de boletos vigentes
-- ✅ Validación de pasajes por número de bus
-- ❌ Cancelación de boletos
-- 📋 Historial de compras
-
-### Gestión de Rutas
-- 🗺️ Visualización de rutas disponibles
-- 📍 Información detallada de rutas
-- 🔍 Búsqueda de rutas
-- ⭐ Favoritos de rutas
-
-### Gestión de Reportes
-- 📝 Creación de reportes de incidencias
-- 📊 Historial de reportes
-- 🔄 Actualización de estado de reportes
-- 👀 Seguimiento de reportes
-
-### Gestión de Conductores
-- 👨‍✈️ Registro de conductores
-- 👥 Gestión de conductores
-- 🚌 Información de unidades
-- 🔄 Actualización de estado de conductores
-
-### Características Adicionales
-- 🎨 Interfaz de usuario intuitiva y moderna
-- 🌓 Modo oscuro/claro personalizable
-- 🔔 Notificaciones push
-- 🔄 Sincronización en tiempo real
-- 🌐 Soporte para múltiples idiomas
-- ♿ Accesibilidad mejorada
-- 📱 Diseño responsive
-- ✨ Animaciones fluidas
-- 🔐 Gestión de sesiones
-- 🛡️ Seguridad mejorada
+- 🚍 Validación de pasajes por número de bus
+- 📱 Interfaz de usuario intuitiva y moderna
+- 🔄 Sincronización en tiempo real con base de datos en la nube
+- 📊 Sistema de reportes y seguimiento
+- 👥 Gestión de usuarios y conductores
 
 ## 🛠️ Tecnologías Utilizadas
 
