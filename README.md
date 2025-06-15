@@ -1,7 +1,7 @@
 # 🚌 MobiPass - Sistema de Gestión de Pasajes de Autobús
 
 <div align="center">
-  <img src="ImagenPortada.jpg" alt="MobiPass App Screenshot" width="200" height="394" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="ReadmeImages/ImagenPortada.jpg" alt="MobiPass App Screenshot" width="200" height="394" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
 </div>
 
 MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a los usuarios gestionar sus pasajes de autobús de manera eficiente y segura. La aplicación utiliza MongoDB Atlas como base de datos en la nube para garantizar alta disponibilidad y escalabilidad, junto con un backend robusto en Node.js.
@@ -87,8 +87,8 @@ MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a
 4. Para iniciar sesión, usa tu correo y contraseña
 
 <div align="center">
-  <img src="IniciarSesionUsuario.jpg" alt="Pantalla de Inicio de Sesión" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-right: 30px;">
-  <img src="CrearCuentaUsuarioOscuro.jpg" alt="Pantalla de Registro" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="ReadmeImages/IniciarSesionUsuario.jpg" alt="Pantalla de Inicio de Sesión" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-right: 30px;">
+  <img src="ReadmeImages/CrearCuentaUsuarioOscuro.jpg" alt="Pantalla de Registro" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
 </div>
 
 ### Compra y Uso de Pasajes
@@ -102,8 +102,8 @@ MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a
    - Muestra la confirmación al conductor
 
 <div align="center">
-  <img src="UsuarioVisualizandoCompraBoletos.jpg" alt="Pantalla de Compra de Boletos" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-right: 30px;">
-  <img src="UsuarioBoletoValidado.jpg" alt="Pantalla de Validación de Boleto" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="ReadmeImages/UsuarioVisualizandoCompraBoletos.jpg" alt="Pantalla de Compra de Boletos" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-right: 30px;">
+  <img src="ReadmeImages/UsuarioBoletoValidado.jpg" alt="Pantalla de Validación de Boleto" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
 </div>
 
 ### Visualización de Rutas
@@ -113,8 +113,8 @@ MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a
 4. Planifica tu viaje de manera eficiente
 
 <div align="center">
-  <img src="UsuarioVisualizaRutas.jpg" alt="Pantalla de Visualización de Rutas - Norte Sur Lomas" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-right: 30px;">
-  <img src="UsuarioVisualizaRutas2.jpg" alt="Pantalla de Visualización de Rutas - Boca del Río" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="ReadmeImages/UsuarioVisualizaRutas.jpg" alt="Pantalla de Visualización de Rutas - Norte Sur Lomas" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-right: 30px;">
+  <img src="ReadmeImages/UsuarioVisualizaRutas2.jpg" alt="Pantalla de Visualización de Rutas - Boca del Río" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
 </div>
 
 ### Sistema de Reportes
@@ -125,8 +125,8 @@ MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a
 5. Da seguimiento en "Historial de Reportes"
 
 <div align="center">
-  <img src="UsuarioGenerandoReporte.jpg" alt="Pantalla de Generación de Reporte" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-right: 30px;">
-  <img src="UsuarioVisualizandoReportes.jpg" alt="Pantalla de Historial de Reportes" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="ReadmeImages/UsuarioGenerandoReporte.jpg" alt="Pantalla de Generación de Reporte" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-right: 30px;">
+  <img src="ReadmeImages/UsuarioVisualizandoReportes.jpg" alt="Pantalla de Historial de Reportes" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
 </div>
 
 ## 👥 Desarrolladores
