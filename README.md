@@ -88,7 +88,7 @@ MobiPass es una aplicación móvil moderna desarrollada en Flutter que permite a
 
 <div align="center">
   <img src="ReadmeImages/IniciarSesionUsuario.jpg" alt="Pantalla de Inicio de Sesión" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-right: 30px;">
-  <img src="ReadmeImages/CrearCuentaUsuarioOscuro.jpg" alt="Pantalla de Registro" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <img src="ReadmeImages/CrearCuentaUsuario.jpg" alt="Pantalla de Registro" width="180" height="354" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
 </div>
 
 ### Compra y Uso de Pasajes
